@@ -53,7 +53,7 @@ const main = async () => {
     // validate
     if (Object.values(map).length !== size) {
       throw new Error(
-        `missing entries: ${Object.values(map).length} !== ${size}`,
+        `missing entries: ${Object.values(map).length} !== ${size}`
       );
     }
     for (const value of Object.values(map)) {

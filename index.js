@@ -101,7 +101,7 @@ function contextNormalLoaders(compiler, loaders) {
   return loaders.map(loader =>
     Object.assign({}, loader, {
       loader: contextNormalPath(compiler, loader.loader),
-    }),
+    })
   );
 }
 
@@ -122,7 +122,7 @@ class HardSourceWebpackPlugin {
     let cachePath = path.resolve(
       process.cwd(),
       this.compilerOutputOptions.path,
-      dirName,
+      dirName
     );
     if (suffix) {
       cachePath = path.join(cachePath, suffix);
@@ -155,7 +155,7 @@ class HardSourceWebpackPlugin {
           name: 'hard-source',
           cwd: compiler.options.context || process.cwd(),
         }),
-        '[confighash]',
+        '[confighash]'
       );
     }
 
@@ -234,7 +234,7 @@ class HardSourceWebpackPlugin {
       compiler,
       '_hardSourceVerifyCache',
       'asyncParallel',
-      [],
+      []
     );
     pluginCompat.register(compiler, '_hardSourceWriteCache', 'asyncParallel', [
       'compilation',
@@ -246,7 +246,7 @@ class HardSourceWebpackPlugin {
 
       new PruneCachesSystem(
         path.dirname(cacheDirPath),
-        options.cachePrune,
+        options.cachePrune
       ).apply(compiler);
     }
 
@@ -273,7 +273,7 @@ class HardSourceWebpackPlugin {
         try {
           compilerHooks._hardSourceCreateSerializer.call(
             cacheSerializerFactory,
-            cacheDirPath,
+            cacheDirPath
           );
         } catch (err) {
           return Promise.reject(err);
@@ -380,11 +380,11 @@ class HardSourceWebpackPlugin {
 
     compilerHooks.watchRun.tapPromise(
       'HardSource - index - readOrReset',
-      runReadOrReset,
+      runReadOrReset
     );
     compilerHooks.run.tapPromise(
       'HardSource - index - readOrReset',
-      runReadOrReset,
+      runReadOrReset
     );
 
     const detectModule = path => {
@@ -398,7 +398,7 @@ class HardSourceWebpackPlugin {
 
     const webpackFeatures = {
       concatenatedModule: detectModule(
-        'webpack/lib/optimize/ConcatenatedModule',
+        'webpack/lib/optimize/ConcatenatedModule'
       ),
       generator: detectModule('webpack/lib/JavascriptGenerator'),
     };
@@ -542,9 +542,9 @@ class HardSourceWebpackPlugin {
             fsWriteFile(
               path.join(cacheDirPath, 'version'),
               hardSourceVersion,
-              'utf8',
+              'utf8'
             ),
-          ]),
+          ])
         ),
         pluginCompat.promise(compiler, '_hardSourceWriteCache', [
           compilation,
